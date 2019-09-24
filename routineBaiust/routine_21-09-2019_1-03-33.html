@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="b4qGCq0FTeEzhQTY1pSs6jzAgjFsasHG2Un7kkGB">
+
+  <title>BAIUST</title>
+
+  <!-- Scripts -->
+  <script src="http://www.routine.baiust.edu.bd/js/app.js" defer></script>
+
+  <!-- Fonts -->
+  
+  
+
+  <!-- Styles -->
+  <link href="http://www.routine.baiust.edu.bd/css/app.css" rel="stylesheet">
+  <style type="text/css">
+    html {
+    height: 100%
+}
+#head{
+  font-family: 'Source Sans Pro', Arial, sans-serif;
+   text-transform: uppercase; color: #fff; text-align: center; letter-spacing: 3px; padding-top: 10%;
+}
+#head h2 {
+  position: absolute;
+  top: -6%;
+  width: 100%;
+font-size:43px ;
+
+ text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+}
+
+.copy{
+  color:#fff;
+  
+}
+
+@media  only screen and (max-width: 600px) {
+  #head h2 {
+    display: none;
+  }
+}
+
+</style>
+
+</head>
+<body style="background-color: #27ae60;">
+
+  
+  <div id="app">
+    <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: #27ae60;">
+      <div class="container">
+        <a style="color: white" class="navbar-brand" href="http://www.routine.baiust.edu.bd">
+          BAIUST
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Left Side Of Navbar -->
+          <ul class="navbar-nav mr-auto">
+
+          </ul>
+
+          <!-- Right Side Of Navbar -->
+          <ul class="navbar-nav ml-auto" style="color: white">
+            <!-- Authentication Links -->
+                          <li class="nav-item" >
+                <b><a style="color: white" class="nav-link" href="http://www.routine.baiust.edu.bd/login">Login</a></b>
+              </li>
+
+                    </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="py-4" >
+    <div class="col-sm-9 offset-sm-2 text-center" id="head" style="color: white;">
+            <img src="http://www.routine.baiust.edu.bd/imgs/logo.png">
+            <h2 >Bangladesh Army International University of Science and Technology</h2>
+            <h3> Routine Management System</h3>
+            <br><br>
+            <marquee><h3>Today Last Bus will departure at 4 PM from Campus-1 &amp; Campus-2.Today Last Bus will departure at 4 PM from Campus-1 &amp; Campus-2.Today Last Bus will departure at 4 PM from Campus-1 &amp; Campus-2</h3> </marquee>
+          </div>
+  <div class="col-md-12" style="text-align: center;">
+
+    <form action="http://www.routine.baiust.edu.bd" method="get" enctype="" class="form-horizontal">
+      <div class="row ">
+        <div class="col-md-3"></div>
+        
+        <div class="col-md-3 mt-5">
+          <select name="department_id" id="department_id" class="form-control">
+            <option value="">Please Select Department</option>
+                          <option value="1">CSE</option>
+                          <option value="2">EEE</option>
+                          <option value="3">CE</option>
+                          <option value="4">BBA</option>
+                          <option value="5">ENG</option>
+                          <option value="6">LAW</option>
+                      </select>
+        </div>
+        
+        
+          <div class=" col-md-3 mt-5">
+          <select name="semester" id="semester" class="form-control">
+            <option value="">Please Select Semester</option>
+                          <option value="1">Section-L1T1-A</option>
+                          <option value="2">Section-L1T1-B</option>
+                          <option value="3">Section-L1T2-A</option>
+                          <option value="4">Section-L1T2-B</option>
+                          <option value="5">Section-L2T1-A</option>
+                          <option value="6">Section-L2T1-B</option>
+                          <option value="7">Section-L2T2-A</option>
+                          <option value="8">Section-L2T2-B</option>
+                          <option value="9">Section-L3T1-A</option>
+                          <option value="10">Section-L3T1-B</option>
+                          <option value="11">Section-L3T2-A</option>
+                          <option value="12">Section-L3T2-B</option>
+                          <option value="13">Section-L4T1-A</option>
+                          <option value="14">Section-L4T1-B</option>
+                          <option value="15">Section-L4T2-A</option>
+                          <option value="16">Section-L4T2-B</option>
+                      </select>
+        </div>
+        
+        
+        <div class="col-md-1 mt-5">
+          <input type="submit" value="Search" class="btn btn-default">
+        </div>
+      </div>
+    </form>
+  </div>
+  <br><br>
+  
+
+  <div class="row">
+  <div class="col-sm-12">
+          <div class="card">
+        <div class="card-header">Class Routine</div>
+
+        <div class="card-body table-responsive">
+          <h4 style="text-align:center;font-weight: bold;">Department of Computer Science &amp; Engineering</h4>
+          <p style="text-align:center;font-weight:bold;margin-bottom:0">
+            Class Routine –
+                          Fall-2019
+                      </p>
+          <p style="text-align:center;font-weight:bold">
+             L3T2-B-Section
+          </p>
+          <table class="table table-bordered " style="font-size: 12px;">
+            <thead>
+              <tr style="text-algn:center;" >
+                <th>DAY</th>
+                                                      <th>
+                      08:30 AM<br>
+                      -<br>
+                      09:25 AM</th>
+                                        <th>
+                      09:30 AM<br>
+                      -<br>
+                      10:25 AM</th>
+                                        <th>
+                      10:30 AM<br>
+                      -<br>
+                      11:25 AM</th>
+                                        <th>
+                      11:25 AM<br>
+                      -<br>
+                      11:40 AM</th>
+                                        <th>
+                      11:40 AM<br>
+                      -<br>
+                      12:35 PM</th>
+                                        <th>
+                      12:40 PM<br>
+                      -<br>
+                      01:35 PM</th>
+                                        <th>
+                      01:40 PM<br>
+                      -<br>
+                      02:30 PM</th>
+                                        <th>
+                      02:30 PM<br>
+                      -<br>
+                      03:00 PM</th>
+                                        <th>
+                      03:05 PM<br>
+                      -<br>
+                      04:00 PM</th>
+                                                      </tr>
+              </thead>
+              <tbody>
+                                                  <tr class="bg-danger text-light" >
+                    <td><b>SUN</b></td>
+
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 316</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-FR</span>, <span>R-Microprocessor Lab</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( Time: 8:30 - 11:25 A/T - AAS,Even week )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 316</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-AAS</span>, <span>R-Microprocessor Lab</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( Time: 8:30 - 11:25 A/T - FR, Even week )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 316</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-FR</span>, <span>R-Microprocessor Lab</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( Time: 8:30 - 11:25 A/T - AAS, Even week )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+                        </td>
+
+                      
+                    
+                                              
+                                                  <td style="background:silver;text-align:center"></td>
+                                              
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   HUM- 103</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-YAA</span>, <span>R-No-07</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( CSE L/T - 3/2 sec: B )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 313</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-SB</span>, <span>R-DB Lab</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( L/T - 3/2 sec: B )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 313</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-SB</span>, <span>R-DB Lab</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( L/T - 3/2 sec: B )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                        </td>
+
+                      
+                    
+                                              
+                                                  <td style="background:silver;text-align:center"></td>
+                                              
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 319</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-RH</span>, <span>R-DB Lab</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( L/T - 3/2 sec: B )
+                                  </p>
+                                </div>
+                                                                                    
+                        </td>
+
+                      
+                                      </tr>
+                                  <tr class="bg-info text-light" >
+                    <td><b>MON</b></td>
+
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 311</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-SSJ</span>, <span>R-No-07</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( L/T - 3/2 sec: B )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 311</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-SSJ</span>, <span>R-No-07</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( L/T - 3/2 sec: B )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 319</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-RH</span>, <span>R-No-07</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( L/T - 3/2 sec: B )
+                                  </p>
+                                </div>
+                                                                                                                                              
+                        </td>
+
+                      
+                    
+                                              
+                                                  <td style="background:silver;text-align:center"></td>
+                                              
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 317</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-MA</span>, <span>R-No-07</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( L/T - 3/2 sec: B )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 315</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-FR</span>, <span>R-No-07</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( L/T - 3/2 sec: B )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                        
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+                        </td>
+
+                      
+                    
+                                              
+                                                  <td style="background:silver;text-align:center"></td>
+                                              
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+                        </td>
+
+                      
+                                      </tr>
+                                  <tr class="bg-success text-light" >
+                    <td><b>TUE</b></td>
+
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 319</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-RH</span>, <span>R-No-09</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( L/T - 3/2 sec: B )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                  
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 315</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-FR</span>, <span>R-No-07</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( L/T - 3/2 sec: B )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                      
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 315</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-FR</span>, <span>R-No-07</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( L/T - 3/2 sec: B )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                            
+                        </td>
+
+                      
+                    
+                                              
+                                                  <td style="background:silver;text-align:center"></td>
+                                              
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 317</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-MA</span>, <span>R-No-07</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( L/T - 3/2 sec: B )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 317</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-MA</span>, <span>R-No-07</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( L/T - 3/2 sec: B )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+                        </td>
+
+                      
+                    
+                                              
+                                                  <td style="background:silver;text-align:center"></td>
+                                              
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+                        </td>
+
+                      
+                                      </tr>
+                                  <tr class="bg-dark text-light" >
+                    <td><b>WED</b></td>
+
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 318</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-M_N_B</span>, <span>R-Communication Lab*</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( Every EVEN week )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 318</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-M_N_B</span>, <span>R-Communication Lab*</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( Every EVEN week )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 318</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-M_N_B</span>, <span>R-Communication Lab*</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( Every EVEN week )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+                        </td>
+
+                      
+                    
+                                              
+                                                  <td style="background:silver;text-align:center"><b>Lunch</b></td>
+                                              
+                    
+                                              <td style="padding:5px;">
+                                                                                                                    <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 322</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-RH</span>, <span>R-SE Lab</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( Time: 11:40 - 2:30 A/T - RIB )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                        <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 322</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-RIB</span>, <span>R-SE Lab</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( Time: 11:40 - 2:30 A/T - RH )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                              <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 322</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-RH</span>, <span>R-SE Lab</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( Time: 11:40 - 2:30 A/T - RIB )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+                        </td>
+
+                      
+                    
+                                              
+                                                  <td style="background:silver;text-align:center"><b>Lunch</b></td>
+                                              
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+                        </td>
+
+                      
+                                      </tr>
+                                  <tr class="bg-primary text-light">
+                    <td><b>THU</b></td>
+
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   HUM- 103</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-YAA</span>, <span>R-No-02</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( L/T - 3/2 sec: B )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 311</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-SSJ</span>, <span>R-No-07</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( L/T - 3/2 sec: B )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 313</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-SB</span>, <span>R-No-07</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( L/T - 3/2 sec: B )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                        </td>
+
+                      
+                    
+                                              
+                                                  <td style="background:silver;text-align:center"></td>
+                                              
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                  <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 312</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-S_S_J</span>, <span>R-Networking Lab*</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( Every ODD week )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                            <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 312</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-S_S_J</span>, <span>R-Networking Lab*</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( Every ODD week )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+                        </td>
+
+                      
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                      <div class="" style="color:#fff; ">
+                                  <p style="color:#fff;font-size:12px;margin-top: 5px;">
+                                   CSE- 312</p>
+                                  <p style="color:#fff;font-size:12px;"><span>T-SK</span>, <span>R-Networking Lab*</span></p>
+                                  <p style="color:#fff;font-size:12px;">                                    ( Time: 11:40 - 2:30 Every ODD Week, A/T - SSJ )
+                                  </p>
+                                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                        </td>
+
+                      
+                    
+                                              
+                                                  <td style="background:silver;text-align:center"></td>
+                                              
+                    
+                                              <td style="padding:5px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+                        </td>
+
+                      
+                                      </tr>
+                              </tbody>
+            </table>
+            <a href="http://www.routine.baiust.edu.bd/routine-ppdf/sem/download?semester=12&amp;department_id=1" style="float:right" class="btn btn-sm btn-info pull-right">Download</a>
+
+           
+
+          </div>
+        
+      </div>
+    </div>
+    </div>
+      </main>
+</div>
+<center>
+<footer class="copy">&copy; Copyright 2019 BAIUST ICT Wing & Archive <p>Developed by- Ebrahim Kholil</p></footer>
+<center>
+
+</body>
+</html>

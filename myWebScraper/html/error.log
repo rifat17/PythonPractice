@@ -1,0 +1,36 @@
+ERROR:root:a bytes-like object is required, not 'str'
+Traceback (most recent call last):
+  File "/home/hasib/PythonProjectFolder/myWebScraper/webscrap/wscrap.py", line 41, in writeWebpageAsHtml
+    fObj.write(self.__data)
+TypeError: a bytes-like object is required, not 'str'
+ERROR:root:Retrive Successfully
+NoneType: None
+ERROR:root:Retrive Successfully
+NoneType: None
+ERROR:root:[Errno 2] No such file or directory: ''
+Traceback (most recent call last):
+  File "/home/hasib/PythonProjectFolder/myWebScraper/webscrap/wscrap.py", line 54, in readWebpageFromHtml
+    with open(self.__filepath) as fObj:
+FileNotFoundError: [Errno 2] No such file or directory: ''
+ERROR:root:[Errno 2] No such file or directory: ''
+Traceback (most recent call last):
+  File "/home/hasib/PythonProjectFolder/myWebScraper/webscrap/wscrap.py", line 54, in readWebpageFromHtml
+    with open(self.__filepath) as fObj:
+FileNotFoundError: [Errno 2] No such file or directory: ''
+ERROR:root:[Errno 2] No such file or directory: ''
+Traceback (most recent call last):
+  File "/home/hasib/PythonProjectFolder/myWebScraper/webscrap/wscrap.py", line 50, in readWebpageFromHtml
+    with open(self.__filepath) as fObj:
+FileNotFoundError: [Errno 2] No such file or directory: ''
+ERROR:root:Retrive Successfully
+NoneType: None
+ERROR:root:[Errno 2] No such file or directory: 'html/html/google.html'
+Traceback (most recent call last):
+  File "/home/hasib/PythonProjectFolder/myWebScraper/webscrap/wscrap.py", line 39, in writeWebpageAsHtml
+    with open(finalPath,'wb') as fObj:
+FileNotFoundError: [Errno 2] No such file or directory: 'html/html/google.html'
+ERROR:root:[Errno 2] No such file or directory: 'html/google.html'
+Traceback (most recent call last):
+  File "/home/hasib/PythonProjectFolder/myWebScraper/webscrap/wscrap.py", line 56, in readWebpageFromHtml
+    with open(filepath) as fObj:
+FileNotFoundError: [Errno 2] No such file or directory: 'html/google.html'

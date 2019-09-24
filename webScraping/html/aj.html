@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<!-- saved from url=(0100)https://www.freecodecamp.org/news/how-to-scrape-websites-with-python-and-beautifulsoup-5946935d93fe/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>How to scrape websites with Python and BeautifulSoup</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="./How to scrape websites with Python and BeautifulSoup_files/prism.min.css">
+    <link rel="stylesheet" type="text/css" href="./How to scrape websites with Python and BeautifulSoup_files/prism-unescaped-markup.css">
+
+    <link href="./How to scrape websites with Python and BeautifulSoup_files/css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="./How to scrape websites with Python and BeautifulSoup_files/screen.css">
+    <link rel="stylesheet" type="text/css" href="./How to scrape websites with Python and BeautifulSoup_files/algolia-search.css">
+    
+    <script type="text/javascript" async="" src="./How to scrape websites with Python and BeautifulSoup_files/analytics.js"></script><script async="" src="./How to scrape websites with Python and BeautifulSoup_files/gtm.js"></script><script src="./How to scrape websites with Python and BeautifulSoup_files/algoliasearch.min.js"></script>
+    <script src="./How to scrape websites with Python and BeautifulSoup_files/autocomplete.min.js"></script>
+
+    <link rel="shortcut icon" href="https://www.freecodecamp.org/news/favicon.png" type="image/png">
+    <link rel="canonical" href="https://www.freecodecamp.org/news/how-to-scrape-websites-with-python-and-beautifulsoup-5946935d93fe/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="https://www.freecodecamp.org/news/how-to-scrape-websites-with-python-and-beautifulsoup-5946935d93fe/amp/">
+    
+    <meta property="og:site_name" content="Developer News">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How to scrape websites with Python and BeautifulSoup">
+    <meta property="og:description" content="by Justin Yek
+
+How to scrape websites with Python and BeautifulSoup
+There is more information on the Internet than any human can absorb in a
+lifetime. What you need is not access to that information, but a scalable way to
+collect, organize, and analyze it.
+
+You need web scraping.
+
+Web scraping automatically extracts data and presents it in a format you can
+easily make sense of. In this tutorial, we’ll focus on its applications in the
+financial market, but web scraping can be used in a wide varie">
+    <meta property="og:url" content="https://www.freecodecamp.org/news/how-to-scrape-websites-with-python-and-beautifulsoup-5946935d93fe/">
+    <meta property="og:image" content="https://cdn-media-1.freecodecamp.org/images/1*BrUAg3-OqIHkoTz_CRIzTA.png">
+    <meta property="article:published_time" content="2017-06-10T14:16:51.000Z">
+    <meta property="article:modified_time" content="2019-06-06T08:51:01.000Z">
+    <meta property="article:tag" content="Web Development">
+    <meta property="article:tag" content="Software Development">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Programming">
+    <meta property="article:tag" content="Life Hacking">
+    
+    <meta property="article:publisher" content="https://www.facebook.com/freecodecamp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to scrape websites with Python and BeautifulSoup">
+    <meta name="twitter:description" content="by Justin Yek
+
+How to scrape websites with Python and BeautifulSoup
+There is more information on the Internet than any human can absorb in a
+lifetime. What you need is not access to that information, but a scalable way to
+collect, organize, and analyze it.
+
+You need web scraping.
+
+Web scraping automatically extracts data and presents it in a format you can
+easily make sense of. In this tutorial, we’ll focus on its applications in the
+financial market, but web scraping can be used in a wide varie">
+    <meta name="twitter:url" content="https://www.freecodecamp.org/news/how-to-scrape-websites-with-python-and-beautifulsoup-5946935d93fe/">
+    <meta name="twitter:image" content="https://cdn-media-1.freecodecamp.org/images/1*BrUAg3-OqIHkoTz_CRIzTA.png">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="freeCodeCamp.org">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Web Development, Software Development, Python, Programming, Life Hacking">
+    <meta name="twitter:site" content="@freecodecamp">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="633">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Developer News",
+        "logo": "https://cdn-media-1.freecodecamp.org/ghost/2018/12/FCC-logo-white.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "freeCodeCamp.org",
+        "image": {
+            "@type": "ImageObject",
+            "url": "//www.gravatar.com/avatar/fcda43852608626fe46d7fd43145766e?s=250&d=mm&r=x",
+            "width": 250,
+            "height": 250
+        },
+        "url": "https://www.freecodecamp.org/news/author/freecodecamp/",
+        "sameAs": []
+    },
+    "headline": "How to scrape websites with Python and BeautifulSoup",
+    "url": "https://www.freecodecamp.org/news/how-to-scrape-websites-with-python-and-beautifulsoup-5946935d93fe/",
+    "datePublished": "2017-06-10T14:16:51.000Z",
+    "dateModified": "2019-06-06T08:51:01.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://cdn-media-1.freecodecamp.org/images/1*BrUAg3-OqIHkoTz_CRIzTA.png",
+        "width": 800,
+        "height": 633
+    },
+    "keywords": "Web Development, Software Development, Python, Programming, Life Hacking",
+    "description": "by Justin Yek\n\nHow to scrape websites with Python and BeautifulSoup\nThere is more information on the Internet than any human can absorb in a\nlifetime. What you need is not access to that information, but a scalable way to\ncollect, organize, and analyze it.\n\nYou need web scraping.\n\nWeb scraping automatically extracts data and presents it in a format you can\neasily make sense of. In this tutorial, we’ll focus on its applications in the\nfinancial market, but web scraping can be used in a wide varie",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.freecodecamp.org/news/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 2.25">
+    <link rel="alternate" type="application/rss+xml" title="Developer News" href="https://www.freecodecamp.org/news/rss/">
+    <script>
+  // Set up dataLayer with data if provided
+  window.dataLayer = window.dataLayer || [{ gaPropertyId: 'UA-55446531-20' }];
+
+  // Initialized GTM via gtag
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-55446531-20');
+
+  // Configure and initialize GTM
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl+'&gtm_cookies_win=x';f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer', 'GTM-5D6RKKP');
+</script>
+
+<style id="fit-vids-style">.fluid-width-video-container{flex-grow: 1;width:100%;}.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></head>
+
+<body class="post-template tag-web-development tag-software-development tag-python tag-programming tag-life-hacking">
+
+    <div class="site-wrapper">
+        <nav class="site-nav nav-padding">
+    <div class="site-nav-left">
+        <form onsubmit="event.preventDefault();">
+  <span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;"><input type="search" placeholder="Search 5,000+ tutorials" id="search-input" class="aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: Lato, sans-serif; font-size: 18px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: normal; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><span class="aa-dropdown-menu" role="listbox" id="algolia-autocomplete-listbox-0" style="position: absolute; top: 100%; z-index: 100; display: none; left: 0px; right: auto;"><div class="aa-dataset-1"></div></span></span>
+</form>
+
+<script>
+  const client = algoliasearch('QMJYL5WYTI', '4318af87aa3ce128708f1153556c6108');
+  const index = client.initIndex('news');
+  autocomplete('#search-input', { hint: false }, [
+    {
+      source: autocomplete.sources.hits(index, { hitsPerPage: 8 }),
+      debounce: 250,
+      templates: {
+        suggestion: (suggestion, result) => {
+          return `
+            <a href="${suggestion.url}">
+              <div class="algolia-result">
+                <span>${suggestion._highlightResult.title.value}</span>
+              </div>
+            </a>
+          `;
+        },
+        empty: (options) => {
+          return `
+            <div class="algolia-result">
+              No tutorials found
+            </div>
+          `;
+        },
+        footer: (query, result) => {
+          if (!query.isEmpty) {
+            return `
+              <hr/>
+              <a href="https://freecodecamp.org/news/search?query=${result.query}">
+                <div class="algolia-result algolia-footer">
+                  <span>See all results for ${result.query}</span>
+                </div>
+              </a>
+            `;
+          }
+        }
+      }
+    }
+  ]).on('autocomplete:selected', (event, suggestion, dataset, context) => {
+    // Set to true if hit is selected by mouse or enter key
+    hitSelected = true;
+    // Do nothing on click, as the browser will already do it
+    if (context.selectionMethod === 'click') {
+      return;
+    }
+    // Change the page, for example, on other events
+    window.location.assign(suggestion.url);
+  });
+
+  // If no hits in the Autocomplete dropdown are highlighted,
+  // treat input like normal search bar
+  const input = document.getElementById("search-input");
+  let searchQuery;
+  let hitSelected;
+
+  // Get the value of the search bar after each key event
+  input.addEventListener('input', e => {
+    searchQuery = input.value;
+  });
+
+  input.addEventListener('keydown', e => {
+    if (event.key === "Enter" && !hitSelected && searchQuery) {
+      window.location.assign(`https://freecodecamp.org/news/search?query=${searchQuery}`);
+    }
+  });
+</script>    </div>
+    <div class="site-nav-middle">
+        <a class="site-nav-logo" href="https://www.freecodecamp.org/news"><img src="./How to scrape websites with Python and BeautifulSoup_files/FCC-logo-white.png" alt="Developer News"></a>
+    </div>
+    <div class="site-nav-right main-nav">
+        <div class="main-nav-group">
+            <ul class="nav" role="menu">
+    <li class="nav-learn" role="menuitem"><a href="https://learn.freecodecamp.org/">Learn</a></li>
+    <li class="nav-forum" role="menuitem"><a href="https://www.freecodecamp.org/forum/">Forum</a></li>
+    <li class="nav-news" role="menuitem"><a href="https://www.freecodecamp.org/news/">News</a></li>
+</ul>
+
+        </div>
+    </div>
+    <button class="site-nav-right toggle-button-nav">
+        Menu
+    </button>
+</nav>
+
+
+        
+
+
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-web-development tag-software-development tag-python tag-programming tag-life-hacking ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="2017-06-10">10 June 2017</time>
+                    <span class="date-divider">/</span>
+                    <a href="https://www.freecodecamp.org/news/tag/web-development/">
+                        #Web Development
+                    </a>
+                </section>
+                <h1 class="post-full-title">How to scrape websites with Python and BeautifulSoup</h1>
+            </header>
+
+            <div class="post-full-author-header">
+
+
+            </div>
+
+            
+<div class="social-row">
+    <button class="twitter" onclick="window.open(&#39;https://twitter.com/share?text=How%20to%20scrape%20websites%20with%20Python%20and%20BeautifulSoup&amp;url=https://www.freecodecamp.org/news/how-to-scrape-websites-with-python-and-beautifulsoup-5946935d93fe/&#39;, &#39;share-twitter&#39;, &#39;width=550,height=235&#39;);return false;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+    <path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path>
+    </svg> <span>&nbsp;Tweet this to your followers</span></button>
+    <div></div>
+    <button class="email" onclick="window.location.href = &#39;mailto:?subject=helpful freeCodeCamp article: How to scrape websites with Python and BeautifulSoup  &amp;body=How to scrape websites with Python and BeautifulSoup https://www.freecodecamp.org/news/how-to-scrape-websites-with-python-and-beautifulsoup-5946935d93fe/&#39;;">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewBox="0 0 640 640" width="32" height="32">
+    <defs>
+        <path d="M0 100L640 100L320 360L0 100Z" id="b1cw6CIsqS"></path>
+        <path d="M0 537.18L0 160L320 420L640 160L640 541.1L0 537.18Z" id="aAHuzNbff"></path>
+    </defs>
+    <g>
+
+        <use xlink:href="#b1cw6CIsqS" opacity="1" fill-opacity="1"></use>
+        <path d="M0 100L640 100L320 360L0 100Z" id="c2GF8nL4hl" fill="white" fill-opacity="1" filter="url(#shadow605849)"></path>
+        <use xlink:href="#aAHuzNbff" opacity="1" fill-opacity="1"></use>
+        <path d="M0 537.18L0 160L320 420L640 160L640 541.1L0 537.18Z" id="a5mitN1KH" fill="white" fill-opacity="1" filter="url(#shadow15043397)"></path>
+
+    </g>
+</svg> <span>Email this to a friend</span></button>
+
+    <div></div>
+    <button class="facebook" onclick="window.open(&#39;https://www.facebook.com/sharer/sharer.php?u=https://www.freecodecamp.org/news/author/freecodecamp/&#39;, &#39;share-facebook&#39;,&#39;width=580,height=296&#39;);return false;">
+        <!-- Facebook Filled icon by Icons8 -->
+
+
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewBox="0 0 640 640" width="32" height="32">
+    <defs>
+        <path d="M640 321.89C640 482.61 523.62 615.43 369.16 638.11C368.42 630.47 367.98 556.08 367.83 414.93C395.49 414.61 420.42 414.27 442.61 413.9C446.4 380.3 452.55 347.37 456.62 323.22C425.51 322.93 388.88 323.31 367.83 323.22C368.37 281.18 368.35 303.77 367.83 262.54C372.62 222.64 384.99 209.96 459.86 213.65C459.57 203.36 460.61 151.4 459.86 133.3C460.87 134.09 279.13 86.74 269.33 241.43C268.52 265.86 268.65 290.49 269.33 323.22C265.63 322.84 238.44 322.84 187.75 323.22L187.75 414.93L269.33 414.93C270.65 564.06 270.21 638.45 268 638.11C114.78 614.35 0 481.73 0 321.89C0 145.28 143.39 1.89 320 1.89C496.61 1.89 640 145.28 640 321.89Z" id="bS1mFenfS"></path>
+    </defs>
+    <g>
+        <g>
+            <g>
+                <use xlink:href="#bS1mFenfS"></use>
+            </g>
+        </g>
+    </g>
+</svg> <span>Share this with your friends</span></button>
+</div>
+            <figure class="post-full-image">
+                <img srcset="https://cdn-media-1.freecodecamp.org/images/1*BrUAg3-OqIHkoTz_CRIzTA.png 300w,
+                            https://cdn-media-1.freecodecamp.org/images/1*BrUAg3-OqIHkoTz_CRIzTA.png 600w,
+                            https://cdn-media-1.freecodecamp.org/images/1*BrUAg3-OqIHkoTz_CRIzTA.png 1000w,
+                            https://cdn-media-1.freecodecamp.org/images/1*BrUAg3-OqIHkoTz_CRIzTA.png 2000w" sizes="(max-width: 800px) 400px,
+                            (max-width: 1170px) 700px,
+                            1400px" src="./How to scrape websites with Python and BeautifulSoup_files/1_BrUAg3-OqIHkoTz_CRIzTA.png" alt="How to scrape websites with Python and BeautifulSoup" onerror="this.style.display=&#39;none&#39;">
+            </figure>
+
+            <section class=" post-full-content">
+                <div class="post-content medium-migrated-article">
+                    <p>by Justin Yek</p><h1 id="how-to-scrape-websites-with-python-and-beautifulsoup">How to scrape websites with Python and BeautifulSoup</h1><!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="./How to scrape websites with Python and BeautifulSoup_files/8D8WScVgBMYV3BTVbL52-HS9v9f8LoV9fCR7" class="kg-image"></figure><!--kg-card-end: image--><p>There is more information on the Internet than any human can absorb in a lifetime. What you need is not access to that information, but a scalable way to collect, organize, and analyze it.</p><p>You need web scraping.</p><p>Web scraping automatically extracts data and presents it in a format you can easily make sense of. In this tutorial, we’ll focus on its applications in the financial market, but web scraping can be used in a wide variety of situations.</p><p>If you’re an avid investor, getting closing prices every day can be a pain, especially when the information you need is found across several webpages. We’ll make data extraction easier by building a web scraper to retrieve stock indices automatically from the Internet.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="./How to scrape websites with Python and BeautifulSoup_files/trTuoesIzruCn5cstkdhl9poG5I8IjL9K5kP" class="kg-image"></figure><!--kg-card-end: image--><h3 id="getting-started">Getting Started</h3><p>We are going to use Python as our scraping language, together with a simple and powerful library, BeautifulSoup.</p><ul><li>For Mac users, Python is pre-installed in OS X. Open up Terminal and type <code>python --version</code>. You should see your python version is 2.7.x.</li><li>For Windows users, please install Python through the <a href="https://www.python.org/downloads/" rel="noopener">official website</a>.</li></ul><p>Next we need to get the BeautifulSoup library using <code>pip</code>, a package management tool for Python.</p><p>In the terminal, type:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">easy_install pip
+pip <span class="token function">install</span> BeautifulSoup4</code></pre><!--kg-card-end: code--><p><strong>Note</strong>: If you fail to execute the above command line, try adding <code>sudo</code> in front of each line.</p><h3 id="the-basics">The Basics</h3><p>Before we start jumping into the code, let’s understand the basics of HTML and some rules of scraping.</p><p><strong>HTML tags</strong><br>If you already understand HTML tags, feel free to skip this part.</p><!--kg-card-begin: code--><pre class=" language-html"><code class=" language-html"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>  
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>  
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span> First Scraping <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span> Hello World <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre><!--kg-card-end: code--><p>This is the basic syntax of an HTML webpage. Every <code>&lt;tag&gt;</code> serves a block inside the webpage:<br>1. <code>&lt;!DOCTYPE html&gt;</code>: HTML documents must start with a type declaration.<br>2. The HTML document is contained between <code>&lt;html&gt;</code> and <code>&lt;/html&gt;</code>.<br>3. The meta and script declaration of the HTML document is between <code>&lt;head&gt;</code>and <code>&lt;/head&gt;</code>.<br>4. The visible part of the HTML document is between <code>&lt;body&gt;</code> and <code>&lt;/body&gt;</code>tags.<br>5. Title headings are defined with the <code>&lt;h1&gt;</code> through <code>&lt;h6&gt;</code> tags.<br>6. Paragraphs are defined with the <code>&lt;p&gt;</code> tag.</p><p>Other useful tags include <code>&lt;a&gt;</code> for hyperlinks, <code>&lt;table&gt;</code> for tables, <code>&lt;tr&gt;</code> for table rows, and <code>&lt;td&gt;</code> for table columns.</p><p>Also, HTML tags sometimes come with <code>id</code> or <code>class</code> attributes. The <code>id</code> attribute specifies a unique id for an HTML tag and the value must be unique within the HTML document. The <code>class</code> attribute is used to define equal styles for HTML tags with the same class. We can make use of these ids and classes to help us locate the data we want.</p><p>For more information on HTML <a href="http://www.w3schools.com/html/" rel="noopener">tags</a>, <a href="http://www.w3schools.com/tags/att_global_id.asp" rel="noopener">id</a> and <a href="http://www.w3schools.com/html/html_classes.asp" rel="noopener">class</a>, please refer to W3Schools <a href="http://www.w3schools.com/" rel="noopener">Tutorials</a>.</p><p><strong>Scraping Rules</strong></p><ol><li>You should check a website’s Terms and Conditions before you scrape it. Be careful to read the statements about legal use of data. Usually, the data you scrape should not be used for commercial purposes.</li><li>Do not request data from the website too aggressively with your program (also known as spamming), as this may break the website. Make sure your program behaves in a reasonable manner (i.e. acts like a human). One request for one webpage per second is good practice.</li><li>The layout of a website may change from time to time, so make sure to revisit the site and rewrite your code as needed</li></ol><h3 id="inspecting-the-page">Inspecting the Page</h3><p>Let’s take one page from the <a href="http://www.bloomberg.com/quote/SPX:IND" rel="noopener">Bloomberg Quote</a> website as an example.</p><p>As someone following the stock market, we would like to get the index name (S&amp;P 500) and its price from this page. First, right-click and open your browser’s inspector to inspect the webpage.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="./How to scrape websites with Python and BeautifulSoup_files/i3mWoIwj3FWfSPQPnyfBEQn3oWNp5czTCg0U" class="kg-image"></figure><!--kg-card-end: image--><p>Try hovering your cursor on the price and you should be able to see a blue box surrounding it. If you click it, the related HTML will be selected in the browser console.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="./How to scrape websites with Python and BeautifulSoup_files/2Tnvx-rIrmKbElQGgSnPaNK1xiG6LJI5xwR8" class="kg-image"></figure><!--kg-card-end: image--><p>From the result, we can see that the price is inside a few levels of HTML tags, which is <code>&lt;div class="basic-quote"&gt;</code> → <code>&lt;div class="price-container up"&gt;</code>→ <code>&lt;div class="price"&gt;</code>.</p><p>Similarly, if you hover and click the name “S&amp;P 500 Index”, it is inside <code>&lt;div class="basic-quote"&gt;</code> and <code>&lt;h1 class="name"&gt;</code>.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="./How to scrape websites with Python and BeautifulSoup_files/o0p8x2WILUOE7lXyS1beHcztnAH63knKOyqd" class="kg-image"></figure><!--kg-card-end: image--><p>Now we know the unique location of our data with the help of <code>class</code> tags.</p><h3 id="jump-into-the-code">Jump into the Code</h3><p>Now that we know where our data is, we can start coding our web scraper. Open your text editor now!</p><p>First, we need to import all the libraries that we are going to use.</p><!--kg-card-begin: code--><pre class=" language-py"><code class=" language-py"><span class="token comment"># import libraries</span>
+<span class="token keyword">import</span> urllib2
+<span class="token keyword">from</span> bs4 <span class="token keyword">import</span> BeautifulSoup</code></pre><!--kg-card-end: code--><p>Next, declare a variable for the url of the page.</p><!--kg-card-begin: code--><pre class=" language-py"><code class=" language-py"><span class="token comment"># specify the url</span>
+quote_page <span class="token operator">=</span> ‘http<span class="token punctuation">:</span><span class="token operator">//</span>www<span class="token punctuation">.</span>bloomberg<span class="token punctuation">.</span>com<span class="token operator">/</span>quote<span class="token operator">/</span>SPX<span class="token punctuation">:</span>IND'</code></pre><!--kg-card-end: code--><p>Then, make use of the Python urllib2 to get the HTML page of the url declared.</p><!--kg-card-begin: code--><pre class=" language-py"><code class=" language-py"><span class="token comment"># query the website and return the html to the variable ‘page’</span>
+page <span class="token operator">=</span> urllib2<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span>quote_page<span class="token punctuation">)</span></code></pre><!--kg-card-end: code--><p>Finally, parse the page into BeautifulSoup format so we can use BeautifulSoup to work on it.</p><!--kg-card-begin: code--><pre class=" language-py"><code class=" language-py"><span class="token comment"># parse the html using beautiful soup and store in variable `soup`</span>
+soup <span class="token operator">=</span> BeautifulSoup<span class="token punctuation">(</span>page<span class="token punctuation">,</span> ‘html<span class="token punctuation">.</span>parser’<span class="token punctuation">)</span></code></pre><!--kg-card-end: code--><p>Now we have a variable, <code>soup</code>, containing the HTML of the page. Here’s where we can start coding the part that extracts the data.</p><p>Remember the unique layers of our data? BeautifulSoup can help us get into these layers and extract the content with <code>find()</code>. In this case, since the HTML class <code>name</code> is unique on this page, we can simply query <code>&lt;div class="name"&gt;</code>.</p><!--kg-card-begin: code--><pre class=" language-py"><code class=" language-py"><span class="token comment"># Take out the &lt;div&gt; of name and get its value</span>
+name_box <span class="token operator">=</span> soup<span class="token punctuation">.</span>find<span class="token punctuation">(</span>‘h1’<span class="token punctuation">,</span> attrs<span class="token operator">=</span><span class="token punctuation">{</span>‘<span class="token keyword">class</span>’<span class="token punctuation">:</span> ‘name’<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre><!--kg-card-end: code--><p>After we have the tag, we can get the data by getting its <code>text</code>.</p><!--kg-card-begin: code--><pre class=" language-py"><code class=" language-py">name <span class="token operator">=</span> name_box<span class="token punctuation">.</span>text<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment"># strip() is used to remove starting and trailing</span>
+<span class="token keyword">print</span> name</code></pre><!--kg-card-end: code--><p>Similarly, we can get the price too.</p><!--kg-card-begin: code--><pre class=" language-py"><code class=" language-py"><span class="token comment"># get the index price</span>
+price_box <span class="token operator">=</span> soup<span class="token punctuation">.</span>find<span class="token punctuation">(</span>‘div’<span class="token punctuation">,</span> attrs<span class="token operator">=</span><span class="token punctuation">{</span>‘<span class="token keyword">class</span>’<span class="token punctuation">:</span>’price’<span class="token punctuation">}</span><span class="token punctuation">)</span>
+price <span class="token operator">=</span> price_box<span class="token punctuation">.</span>text
+<span class="token keyword">print</span> price</code></pre><!--kg-card-end: code--><p>When you run the program, you should be able to see that it prints out the current price of the S&amp;P 500 Index.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="./How to scrape websites with Python and BeautifulSoup_files/R7W6VXymQPtfUACuiHkwldc1CuMEs2NYdcW1" class="kg-image"></figure><!--kg-card-end: image--><h3 id="export-to-excel-csv">Export to Excel CSV</h3><p>Now that we have the data, it is time to save it. The Excel Comma Separated Format is a nice choice. It can be opened in Excel so you can see the data and process it easily.</p><p>But first, we have to import the Python csv module and the datetime module to get the record date. Insert these lines to your code in the import section.</p><!--kg-card-begin: code--><pre class=" language-py"><code class=" language-py"><span class="token keyword">import</span> csv
+<span class="token keyword">from</span> datetime <span class="token keyword">import</span> datetime</code></pre><!--kg-card-end: code--><p>At the bottom of your code, add the code for writing data to a csv file.</p><!--kg-card-begin: code--><pre class=" language-py"><code class=" language-py"><span class="token comment"># open a csv file with append, so old data will not be erased</span>
+<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>‘index<span class="token punctuation">.</span>csv’<span class="token punctuation">,</span> ‘a’<span class="token punctuation">)</span> <span class="token keyword">as</span> csv_file<span class="token punctuation">:</span>
+ writer <span class="token operator">=</span> csv<span class="token punctuation">.</span>writer<span class="token punctuation">(</span>csv_file<span class="token punctuation">)</span>
+ writer<span class="token punctuation">.</span>writerow<span class="token punctuation">(</span><span class="token punctuation">[</span>name<span class="token punctuation">,</span> price<span class="token punctuation">,</span> datetime<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre><!--kg-card-end: code--><p>Now if you run your program, you should able to export an <code>index.csv</code> file, which you can then open with Excel, where you should see a line of data.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="./How to scrape websites with Python and BeautifulSoup_files/7O7PaHRqlgGALct2ZdjI2K773eGgXMAaJvMH" class="kg-image"></figure><!--kg-card-end: image--><p>So if you run this program everyday, you will be able to easily get the S&amp;P 500 Index price without rummaging through the website!</p><h3 id="going-further-advanced-uses-">Going Further (Advanced uses)</h3><p><strong>Multiple Indices</strong><br>So scraping one index is not enough for you, right? We can try to extract multiple indices at the same time.</p><p>First, modify the <code>quote_page</code> into an array of URLs.</p><!--kg-card-begin: code--><pre class=" language-py"><code class=" language-py">quote_page <span class="token operator">=</span> <span class="token punctuation">[</span>‘http<span class="token punctuation">:</span><span class="token operator">//</span>www<span class="token punctuation">.</span>bloomberg<span class="token punctuation">.</span>com<span class="token operator">/</span>quote<span class="token operator">/</span>SPX<span class="token punctuation">:</span>IND<span class="token string">', ‘http://www.bloomberg.com/quote/CCMP:IND'</span><span class="token punctuation">]</span></code></pre><!--kg-card-end: code--><p>Then we change the data extraction code into a <code>for</code> loop, which will process the URLs one by one and store all the data into a variable <code>data</code> in tuples.</p><!--kg-card-begin: code--><pre class=" language-py"><code class=" language-py"><span class="token comment"># for loop</span>
+data <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token keyword">for</span> pg <span class="token keyword">in</span> quote_page<span class="token punctuation">:</span>
+ <span class="token comment"># query the website and return the html to the variable ‘page’</span>
+ page <span class="token operator">=</span> urllib2<span class="token punctuation">.</span>urlopen<span class="token punctuation">(</span>pg<span class="token punctuation">)</span>
+ 
+<span class="token comment"># parse the html using beautiful soap and store in variable `soup`</span>
+ soup <span class="token operator">=</span> BeautifulSoup<span class="token punctuation">(</span>page<span class="token punctuation">,</span> ‘html<span class="token punctuation">.</span>parser’<span class="token punctuation">)</span>
+ 
+<span class="token comment"># Take out the &lt;div&gt; of name and get its value</span>
+ name_box <span class="token operator">=</span> soup<span class="token punctuation">.</span>find<span class="token punctuation">(</span>‘h1’<span class="token punctuation">,</span> attrs<span class="token operator">=</span><span class="token punctuation">{</span>‘<span class="token keyword">class</span>’<span class="token punctuation">:</span> ‘name’<span class="token punctuation">}</span><span class="token punctuation">)</span>
+ name <span class="token operator">=</span> name_box<span class="token punctuation">.</span>text<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment"># strip() is used to remove starting and trailing</span>
+ 
+<span class="token comment"># get the index price</span>
+ price_box <span class="token operator">=</span> soup<span class="token punctuation">.</span>find<span class="token punctuation">(</span>‘div’<span class="token punctuation">,</span> attrs<span class="token operator">=</span><span class="token punctuation">{</span>‘<span class="token keyword">class</span>’<span class="token punctuation">:</span>’price’<span class="token punctuation">}</span><span class="token punctuation">)</span>
+ price <span class="token operator">=</span> price_box<span class="token punctuation">.</span>text
+ 
+<span class="token comment"># save the data in tuple</span>
+ data<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> price<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre><!--kg-card-end: code--><p>Also, modify the saving section to save data row by row.</p><!--kg-card-begin: code--><pre class=" language-py"><code class=" language-py"><span class="token comment"># open a csv file with append, so old data will not be erased</span>
+<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>‘index<span class="token punctuation">.</span>csv’<span class="token punctuation">,</span> ‘a’<span class="token punctuation">)</span> <span class="token keyword">as</span> csv_file<span class="token punctuation">:</span>
+ writer <span class="token operator">=</span> csv<span class="token punctuation">.</span>writer<span class="token punctuation">(</span>csv_file<span class="token punctuation">)</span>
+ <span class="token comment"># The for loop</span>
+ <span class="token keyword">for</span> name<span class="token punctuation">,</span> price <span class="token keyword">in</span> data<span class="token punctuation">:</span>
+ writer<span class="token punctuation">.</span>writerow<span class="token punctuation">(</span><span class="token punctuation">[</span>name<span class="token punctuation">,</span> price<span class="token punctuation">,</span> datetime<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre><!--kg-card-end: code--><p>Rerun the program and you should be able to extract two indices at the same time!</p><h3 id="advanced-scraping-techniques">Advanced Scraping Techniques</h3><p>BeautifulSoup is simple and great for small-scale web scraping. But if you are interested in scraping data at a larger scale, you should consider using these other alternatives:</p><ol><li><a href="http://scrapy.org/" rel="noopener">Scrapy</a>, a powerful python scraping framework</li><li>Try to integrate your code with some public APIs. The efficiency of data retrieval is much higher than scraping webpages. For example, take a look at <a href="https://developers.facebook.com/docs/graph-api" rel="noopener">Facebook Graph API</a>, which can help you get hidden data which is not shown on Facebook webpages.</li><li>Consider using a database backend like <a href="https://www.mysql.com/" rel="noopener">MySQL</a> to store your data when it gets too large.</li></ol><h3 id="adopt-the-dry-method">Adopt the DRY Method</h3><!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="./How to scrape websites with Python and BeautifulSoup_files/e71XWhRmRZLario-leNUQuWlNwrMzZXv-e8n" class="kg-image"></figure><!--kg-card-end: image--><p>DRY stands for “Don’t Repeat Yourself”, try to automate your everyday tasks like <a href="http://www.businessinsider.com/programmer-automates-his-job-2015-11" rel="noopener">this person</a>. Some other fun projects to consider might be keeping track of your Facebook friends’ active time (with their consent of course), or grabbing a list of topics in a forum and trying out natural language processing (which is a hot topic for Artificial Intelligence right now)!</p><p>If you have any questions, please feel free to leave a comment below.</p><p><strong>References</strong><br><a href="http://www.gregreda.com/2013/03/03/web-scraping-101-with-python/" rel="noopener">http://www.gregreda.com/2013/03/03/web-scraping-101-with-python/</a><br><a href="http://www.analyticsvidhya.com/blog/2015/10/beginner-guide-web-scraping-beautiful-soup-python/" rel="noopener">http://www.analyticsvidhya.com/blog/2015/10/beginner-guide-web-scraping-beautiful-soup-python/</a></p><p><em>This article was originally published on Altitude Labs’ <a href="http://altitudelabs.com/blog/" rel="noopener">blog</a> and was written by our software engineer, <a href="https://medium.com/@leonardmok" rel="noopener">Leonard Mok</a>. <a href="http://altitudelabs.com/" rel="noopener">Altitude Labs</a> is a software agency that specializes in personalized, mobile-first React apps.</em></p>
+                </div>
+            </section>
+
+
+            
+<div class="social-row">
+    <button class="twitter" onclick="window.open(&#39;https://twitter.com/share?text=How%20to%20scrape%20websites%20with%20Python%20and%20BeautifulSoup&amp;url=https://www.freecodecamp.org/news/how-to-scrape-websites-with-python-and-beautifulsoup-5946935d93fe/&#39;, &#39;share-twitter&#39;, &#39;width=550,height=235&#39;);return false;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+    <path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path>
+    </svg> <span>&nbsp;Tweet this to your followers</span></button>
+    <div></div>
+    <button class="email" onclick="window.location.href = &#39;mailto:?subject=helpful freeCodeCamp article: How to scrape websites with Python and BeautifulSoup  &amp;body=How to scrape websites with Python and BeautifulSoup https://www.freecodecamp.org/news/how-to-scrape-websites-with-python-and-beautifulsoup-5946935d93fe/&#39;;">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewBox="0 0 640 640" width="32" height="32">
+    <defs>
+        <path d="M0 100L640 100L320 360L0 100Z" id="b1cw6CIsqS"></path>
+        <path d="M0 537.18L0 160L320 420L640 160L640 541.1L0 537.18Z" id="aAHuzNbff"></path>
+    </defs>
+    <g>
+
+        <use xlink:href="#b1cw6CIsqS" opacity="1" fill-opacity="1"></use>
+        <path d="M0 100L640 100L320 360L0 100Z" id="c2GF8nL4hl" fill="white" fill-opacity="1" filter="url(#shadow605849)"></path>
+        <use xlink:href="#aAHuzNbff" opacity="1" fill-opacity="1"></use>
+        <path d="M0 537.18L0 160L320 420L640 160L640 541.1L0 537.18Z" id="a5mitN1KH" fill="white" fill-opacity="1" filter="url(#shadow15043397)"></path>
+
+    </g>
+</svg> <span>Email this to a friend</span></button>
+
+    <div></div>
+    <button class="facebook" onclick="window.open(&#39;https://www.facebook.com/sharer/sharer.php?u=https://www.freecodecamp.org/news/author/freecodecamp/&#39;, &#39;share-facebook&#39;,&#39;width=580,height=296&#39;);return false;">
+        <!-- Facebook Filled icon by Icons8 -->
+
+
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" viewBox="0 0 640 640" width="32" height="32">
+    <defs>
+        <path d="M640 321.89C640 482.61 523.62 615.43 369.16 638.11C368.42 630.47 367.98 556.08 367.83 414.93C395.49 414.61 420.42 414.27 442.61 413.9C446.4 380.3 452.55 347.37 456.62 323.22C425.51 322.93 388.88 323.31 367.83 323.22C368.37 281.18 368.35 303.77 367.83 262.54C372.62 222.64 384.99 209.96 459.86 213.65C459.57 203.36 460.61 151.4 459.86 133.3C460.87 134.09 279.13 86.74 269.33 241.43C268.52 265.86 268.65 290.49 269.33 323.22C265.63 322.84 238.44 322.84 187.75 323.22L187.75 414.93L269.33 414.93C270.65 564.06 270.21 638.45 268 638.11C114.78 614.35 0 481.73 0 321.89C0 145.28 143.39 1.89 320 1.89C496.61 1.89 640 145.28 640 321.89Z" id="bS1mFenfS"></path>
+    </defs>
+    <g>
+        <g>
+            <g>
+                <use xlink:href="#bS1mFenfS"></use>
+            </g>
+        </g>
+    </g>
+</svg> <span>Share this with your friends</span></button>
+</div>
+            <script type="text/javascript">
+                function loadDiscourseComments() {
+                    var xhr = new XMLHttpRequest();
+                    var file = "https://www.freecodecamp.org/forum/srv/status";
+                    var randomNum = Math.round(Math.random() * 10000);
+                    xhr.open('HEAD', file + "?rand=" + randomNum, true);
+                    xhr.send();
+                    xhr.addEventListener("readystatechange", processRequest, false);
+                    function processRequest(e) {
+                        if (xhr.readyState == 4) {
+                            if (xhr.status >= 200 && xhr.status < 304) {
+                                document.getElementById('discourse-comments').innerHTML = '';
+                                DiscourseEmbed = {
+                                    discourseUrl: 'https://www.freecodecamp.org/forum/',
+                                    discourseEmbedUrl: 'https://www.freecodecamp.org/news/how-to-scrape-websites-with-python-and-beautifulsoup-5946935d93fe/'
+                                };
+                                var d = document.createElement('script'); d.type = 'text/javascript'; d.async = true;
+                                d.src = DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
+                                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(d);
+                            } else {
+                                document.getElementById('discourse-comments').innerHTML = '<div style="text-align: center;">Sorry, we could not load the comments. Please try again after sometime.</div>';
+                            }
+                        }
+                    }
+                }
+                if (window && window.addEventListener) {
+                    window.addEventListener('load', function () {
+                        document.getElementById('trigger-load-comments').onclick = loadDiscourseComments;
+                    });
+                }
+            </script>
+
+            <div id="discourse-comments">
+                <button id="trigger-load-comments">Show comments</button>
+            </div>
+
+        </article>
+    </div>
+</main>
+
+
+
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            <article class="read-next-card" style="background-image: url(/news/content/images/size/w600/2019/06/background.png)">
+                <header class="read-next-card-header">
+                    <p class="read-next-card-header-sitetitle">Countinue reading about</p>
+                    <h3 class="read-next-card-header-title"><a href="https://www.freecodecamp.org/news/tag/web-development/">Web Development</a></h3>
+                </header>
+                <div class="read-next-card-content">
+                    <ul>
+                        <li><a href="https://www.freecodecamp.org/news/a-walk-through-the-developer-thought-process/">How Developers Think: A Walkthrough of the Planning and Design Behind a Simple Web App</a></li>
+                        <li><a href="https://www.freecodecamp.org/news/using-structured-data-helps-your-websites-seo/">Why Using Structured Data Helps Your Website’s SEO</a></li>
+                        <li><a href="https://www.freecodecamp.org/news/the-guide-to-using-eslint-and-prettier-in-a-react-app/">How to setup ESLint and Prettier for your React apps</a></li>
+                    </ul>
+                </div>
+                <footer class="read-next-card-footer">
+                    <a href="https://www.freecodecamp.org/news/tag/web-development/">See all 1539 posts
+                        →</a>
+                </footer>
+            </article>
+
+            <article class="post-card post tag-javascript tag-angularjs tag-react tag-redux tag-es6 ">
+
+    <a class="post-card-image-link" href="https://www.freecodecamp.org/news/angularjs-migration-to-react-redux-2d3bb3a7cc84/">
+        <img class="post-card-image" srcset="https://cdn-media-1.freecodecamp.org/images/1*BHCxD-xbmOPDcEMiTXsPxw.jpeg 300w,
+                    https://cdn-media-1.freecodecamp.org/images/1*BHCxD-xbmOPDcEMiTXsPxw.jpeg 600w,
+                    https://cdn-media-1.freecodecamp.org/images/1*BHCxD-xbmOPDcEMiTXsPxw.jpeg 1000w,
+                    https://cdn-media-1.freecodecamp.org/images/1*BHCxD-xbmOPDcEMiTXsPxw.jpeg 2000w" sizes="(max-width: 1000px) 400px, 700px" onerror="this.style.display=&#39;none&#39;" src="./How to scrape websites with Python and BeautifulSoup_files/1_BHCxD-xbmOPDcEMiTXsPxw.jpeg" alt="From AngularJS to React &amp; Redux — how to migrate your web app">
+    </a>
+
+    <div class="post-card-content">
+
+        <div class="post-card-content-link">
+
+            <header class="post-card-header">
+                <span class="post-card-tags">
+                    <a href="https://www.freecodecamp.org/news/tag/javascript/">
+                        #JavaScript
+                    </a>
+                </span>
+                <h2 class="post-card-title">
+                    <a href="https://www.freecodecamp.org/news/angularjs-migration-to-react-redux-2d3bb3a7cc84/">
+                        From AngularJS to React &amp; Redux — how to migrate your web app
+                    </a>
+                </h2>
+            </header>
+
+        </div>
+
+
+        <footer class="post-card-meta">
+
+            <time class="meta-item-single">2 years ago</time>
+
+
+        </footer>
+
+    </div>
+
+</article>
+            <article class="post-card post tag-innovation tag-product-design tag-design-thinking tag-product-development tag-tech ">
+
+    <a class="post-card-image-link" href="https://www.freecodecamp.org/news/is-it-an-mvp-really-6657db743544/">
+        <img class="post-card-image" srcset="https://cdn-media-1.freecodecamp.org/images/1*c7D3AVflWXNTNe-u_5Yfwg.jpeg 300w,
+                    https://cdn-media-1.freecodecamp.org/images/1*c7D3AVflWXNTNe-u_5Yfwg.jpeg 600w,
+                    https://cdn-media-1.freecodecamp.org/images/1*c7D3AVflWXNTNe-u_5Yfwg.jpeg 1000w,
+                    https://cdn-media-1.freecodecamp.org/images/1*c7D3AVflWXNTNe-u_5Yfwg.jpeg 2000w" sizes="(max-width: 1000px) 400px, 700px" onerror="this.style.display=&#39;none&#39;" src="./How to scrape websites with Python and BeautifulSoup_files/1_c7D3AVflWXNTNe-u_5Yfwg.jpeg" alt="How to define a Minimum Viable Product">
+    </a>
+
+    <div class="post-card-content">
+
+        <div class="post-card-content-link">
+
+            <header class="post-card-header">
+                <span class="post-card-tags">
+                    <a href="https://www.freecodecamp.org/news/tag/innovation/">
+                        #Innovation
+                    </a>
+                </span>
+                <h2 class="post-card-title">
+                    <a href="https://www.freecodecamp.org/news/is-it-an-mvp-really-6657db743544/">
+                        How to define a Minimum Viable Product
+                    </a>
+                </h2>
+            </header>
+
+        </div>
+
+
+        <footer class="post-card-meta">
+
+            <time class="meta-item-single">2 years ago</time>
+
+
+        </footer>
+
+    </div>
+
+</article>
+        </div>
+    </div>
+</aside>
+
+
+
+
+        <footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-row">
+            <div class="footer-desc-col">
+                <p>freeCodeCamp is a donor-supported tax-exempt 501(c)(3) nonprofit organization (United States Federal
+                    Tax Identification Number: 82-0779546)
+                </p>
+                <p>
+                    Our mission: to help people learn to code for free. We accomplish this by creating thousands of
+                    videos, articles, and interactive coding lessons - all freely available to the public. We also have
+                    thousands of freeCodeCamp study groups around the world.
+                </p>
+                <p>
+                    Donations to freeCodeCamp go toward our education initiatives, and help pay for servers, services,
+                    and staff. You can&nbsp;<a href="https://freecodecamp.org/donate" class="inline" rel="noopener noreferrer" target="_blank">make a tax-deductible donation here</a>.
+                </p>
+            </div>
+            <div class="footer-col-1">
+                <div class="col-header">Our Nonprofit</div>
+                <a href="https://www.freecodecamp.org/news/about-freecodecamp/">About</a>
+                <a href="https://freecodecamp.org/donate">Donate</a>
+                <a href="https://www.freecodecamp.org/news/shop/" rel="noopener noreferrer" target="_blank">Shop</a>
+                <a href="https://www.linkedin.com/school/free-code-camp/people/" rel="noopener noreferrer" target="_blank">Alumni Network</a>
+                <a href="https://github.com/freeCodeCamp/">Open Source</a>
+                <a href="https://www.freecodecamp.org/news/support/">Support</a>
+                <a href="https://www.freecodecamp.org/news/our-sponsors/">Sponsors</a>
+                <a href="https://www.freecodecamp.org/news/academic-honesty-policy/">Academic Honesty</a>
+                <a href="https://www.freecodecamp.org/news/code-of-conduct/">Code of Conduct</a>
+                <a href="https://www.freecodecamp.org/news/privacy-policy/">Privacy Policy</a>
+                <a href="https://www.freecodecamp.org/news/freecodecamps-terms-of-service/">Terms of Service</a>
+                <a href="https://www.freecodecamp.org/news/copyright-policy/">Copyright Policy</a>
+            </div>
+            <div class="footer-col-2">
+                <div class="col-header">Best Tutorials</div>
+                <a href="https://www.freecodecamp.org/news/best-python-tutorial/">Python Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-git-tutorial/">Git Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/the-best-linux-tutorials/">Linux Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-javascript-tutorial/">JavaScript Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-react-javascript-tutorial/">React Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-html-html5-tutorial/">HTML Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-css-and-css3-tutorial/">CSS Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-sql-database-tutorial/">SQL Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-java-8-tutorial/">Java Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-angular-tutorial-angularjs/">Angular Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-wordpress-tutorial/">WordPress Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-bootstrap-tutorial-responsive-web-design/">Bootstrap
+                    Tutorial</a>
+
+            </div>
+            <div class="footer-col-3">
+                <div class="col-header">Best Examples</div>
+                <a href="https://www.freecodecamp.org/news/python-example/">Python Example </a>
+                <a href="https://www.freecodecamp.org/news/javascript-example/">JavaScript Example</a>
+                <a href="https://www.freecodecamp.org/news/react-examples-reactjs/">React Example</a>
+                <a href="https://www.freecodecamp.org/news/linux-example-bash-command-line/">Linux Example</a>
+                <a href="https://www.freecodecamp.org/news/html-and-html5-example/">HTML Example</a>
+                <a href="https://www.freecodecamp.org/news/css-example-css3/">CSS Example</a>
+                <a href="https://www.freecodecamp.org/news/sql-example/">SQL Example</a>
+                <a href="https://www.freecodecamp.org/news/java-example/">Java Example</a>
+                <a href="https://www.freecodecamp.org/news/the-best-angular-examples/">Angular Example</a>
+                <a href="https://www.freecodecamp.org/news/the-best-jquery-examples/">jQuery Example</a>
+                <a href="https://www.freecodecamp.org/news/the-best-bootstrap-examples/">Bootstrap Example</a>
+                <a href="https://www.freecodecamp.org/news/the-best-php-examples/">PHP Example</a>
+            </div>
+            <div class="footer-col-4">
+                <div class="col-header">Trending Reference</div>
+                <a href="https://www.freecodecamp.org/news/2019-web-developer-roadmap/">2019 Web Developer Roadmap</a>
+                <a href="https://www.freecodecamp.org/news/linux-command-line-bash-tutorial/">Linux Command Line
+                    Guide</a>
+                <a href="https://www.freecodecamp.org/news/the-ultimate-guide-to-git-reset-and-git-revert/">Git Reset
+                    and Git Revert</a>
+                <a href="https://www.freecodecamp.org/news/the-ultimate-guide-to-git-merge-and-git-rebase/">Git Merge
+                    and Git Rebase</a>
+                <a href="https://www.freecodecamp.org/news/the-ultimate-guide-to-javascript-array-methods-map/">JavaScript
+                    Array Map</a>
+                <a href="https://www.freecodecamp.org/news/the-ultimate-guide-to-javascript-array-methods-reduce/">JavaScript
+                    Array Reduce</a>
+                <a href="https://www.freecodecamp.org/news/the-ultimate-guide-to-javascript-date-and-moment-js/">JavaScript
+                    Date</a>
+                <a href="https://www.freecodecamp.org/news/the-ultimate-guide-to-javascript-string-methods-split/">JavaScript
+                    String Split</a>
+                <a href="https://www.freecodecamp.org/news/understanding-flexbox-everything-you-need-to-know-b4013d4dc9af/">CSS
+                    Flexbox Guide</a>
+                <a href="https://www.freecodecamp.org/news/11-things-i-learned-reading-the-css-grid-specification-fb3983aa5e0/">CSS
+                    Grid Guide</a>
+                <a href="https://www.freecodecamp.org/news/the-ultimate-guide-to-linux-creating-a-sudo-user/">Create a
+                    Linux Sudo User</a>
+                <a href="https://www.freecodecamp.org/news/the-ultimate-guide-to-ssh-setting-up-ssh-keys/">How to Set Up
+                    SSH Keys</a>
+            </div>
+        </div>
+    </div>
+</footer>
+    </div>
+
+
+    <script>
+        var images = document.querySelectorAll('.kg-gallery-image img');
+        images.forEach(function (image) {
+            var container = image.closest('.kg-gallery-image');
+            var width = image.attributes.width.value;
+            var height = image.attributes.height.value;
+            var ratio = width / height;
+            container.style.flex = ratio + ' 1 0%';
+        })
+    </script>
+
+
+    <script src="./How to scrape websites with Python and BeautifulSoup_files/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+        </script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/jquery.fitvids.js"></script>
+
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-unescaped-markup.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-markup-templating.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-bash.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-c.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-clojure.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-cpp.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-csharp.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-css.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-docker.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-elixir.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-erlang.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-git.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-go.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-graphql.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-haskell.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-java.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-javascript.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-json.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-jsx.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-kotlin.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-lua.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-markup.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-php.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-python.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-r.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-ruby.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-rust.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-scala.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-sql.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-swift.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-typescript.min.js"></script>
+    <script type="text/javascript" src="./How to scrape websites with Python and BeautifulSoup_files/prism-yaml.min.js"></script>
+
+    <script>
+    $(document).ready(function () {
+        // Start fitVids
+        var $postContent = $(".post-full-content");
+        $postContent.fitVids();
+        // End fitVids
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $(".toggle-button-nav").click(function () {
+            $(".nav").toggleClass("show-main-nav-items");
+            $(".site-nav").toggleClass("expand-nav");
+            $(".toggle-button-nav").toggleClass("reverse-toggle-color");
+            $(".site-nav-left").toggleClass("display-search");
+        });
+    });
+</script>
+
+
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5D6RKKP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+
+</body></html>

@@ -1,0 +1,601 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+
+<link href="css/new_style.css" rel="stylesheet" type="text/css"  />
+<title>IT/Telecommunication  || bdjobs.com :: Largest Job Site in Bangladesh</title>
+<!--<link rel="alternate" href="Joblistingview.html" id="phone"
+media="only screen and (max-device-width: 640px)">
+<link rel="alternate" href="Joblistingview.html" id="tablet"
+media="only screen and (min-device-width: 641px)">
+<script src="js/device.js"></script>-->
+    
+
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/JobSearch_ver2.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+   
+    var category, locationmain, experience, age, keyword, otherJobType, division, pageNumber, totalJobs, totalPage;
+    var jobsRPP=20
+    var page_no = 1
+    //var lazyLoad = False
+   var lazyload =  false;
+   
+    var ajaxURL = "", isClickedElement = true,isOpera=false;
+
+    
+    
+    function stateChanged(isClicked) {
+        var strResponseText;
+       
+       //console.log(isClicked);
+        if (xmlHttp.readyState == 4) {
+            if (xmlHttp.status == 200) {
+                strResponseText = xmlHttp.responseText;
+                //console.log(isClicked);
+                if (isClicked) {
+                   // console.log(isClicked);
+                    page_no=1;
+                    document.getElementById("joblistings").innerHTML = strResponseText;
+                }
+                else {
+                    
+                    //console.log(isClicked);
+                    document.getElementById("joblistings").innerHTML = document.getElementById("joblistings").innerHTML + strResponseText;
+                }
+                if(document.getElementById("count") != null){
+                    document.getElementById("jobTotalCount").innerHTML = document.getElementById("count").value; 
+                    var totalJob = document.getElementById("count").value;
+                    if(totalJob >1)
+                    {
+                        document.getElementById("jobMessage").innerHTML = "jobs found"
+                    }else{
+                    document.getElementById("jobMessage").innerHTML = "job found"
+                    }
+                }
+                getTotalPage();
+                
+//                 if(page_no == totalPage){
+//                        document.getElementById("loadingImage").style.display = "none";
+//                        document.getElementById("btnmorejobs").style.background = "#737373";
+//                        document.getElementById("btnmorejobs").value="You have viewed all the jobs";
+//                        document.getElementById("btnmorejobs").disabled=true;
+//                 }else if(totalJobs == 0){
+//                        document.getElementById("btnmorejobs").style.background = "#737373";
+//                        document.getElementById("btnmorejobs").value="No job found";
+//                        document.getElementById("jobMessage").innerHTML = "No job found"
+//                        document.getElementById("btnmorejobs").disabled=true;
+//                        document.getElementById("jobsperpage").style.display="";
+//                       
+//                 }
+//                 else{
+//                        document.getElementById("btnmorejobs").style.background = "#43a047";
+//                        document.getElementById("btnmorejobs").value="More jobs";
+//                        document.getElementById("btnmorejobs").disabled=false;
+//                 }
+
+                document.getElementById("loadingImage").style.display = "none";
+
+//                if(document.getElementById("btnmorejobs")!=null)
+//               {document.getElementById("btnmorejobs").disabled=false;}
+            }
+        }
+    }
+
+    function getData(type,isClicked) {
+        xmlHttp = GetXmlHttpObject()
+        if (xmlHttp == null) {
+            //alert ("Your browser does not support AJAX!");
+            window.location.href = gURL;
+            return;
+        }
+
+       
+         
+        if (pageNumber != 0 || isClicked==true) {
+            if(isClicked)
+            {
+                document.getElementById("joblistings").innerHTML="";
+            }
+            document.getElementById("loadingImage").style.display = "block";
+            document.getElementById("jobsperpage").style.display = "block";
+            
+            if(document.getElementById("btnmorejobs")!=null)
+            {document.getElementById("btnmorejobs").disabled=true;}
+
+            url = "joblisting_init.aspx?" + encodeURI((type));
+            //url = encodeURIComponent(url);
+
+            xmlHttp.onreadystatechange = function () {
+                stateChanged(isClicked);
+            };
+            
+            xmlHttp.open("GET", url, true);
+           // xmlHttp.setRequestHeader("Content-length", url.length); //This line is required for Firefox, only when using POST method
+            xmlHttp.send(url);
+            
+
+        }
+    }
+
+
+    
+
+    function GoPage(page) {
+        document.getElementById("pg_no").value = page;
+        document.getElementById("form").submit();
+    }
+
+    function TriggerLazyload()
+    {
+//        
+       page_no = page_no+1;
+
+        
+        if(parseInt(document.getElementById("jobTotalCount").innerHTML)>jobsRPP){
+           
+            ajaxURL = "";
+            getInputs(false);
+            getData(ajaxURL,false);
+        }
+        else{
+            document.getElementById("loadingImage").style.display = "none";
+             //document.getElementById("btnmorejobs").style.background = "#737373";
+            //document.getElementById("btnmorejobs").value="You have viewed all the jobs";
+        }
+    }
+    
+
+    var getversion;
+    getversion = ""
+    var geturl = window.location.toString().toLowerCase();
+    if (geturl.indexOf("/bn/") >= 0) {
+        getversion = "bng"
+    }
+
+   
+    function checkLoad(){
+       getTotalPage();
+        if(page_no == totalPage){
+             document.getElementById("loadingImage").style.display = "none";
+              //document.getElementById("btnmorejobs").style.background = "#737373";
+             //document.getElementById("btnmorejobs").value="You have viewed all the jobs";
+        }else{
+            
+            //document.getElementById("btnmorejobs").style.background = "#43a047";
+            document.getElementById("btnmorejobs").value="More jobs";
+
+        }
+    }
+
+    
+
+</script>
+<script type="text/javascript">  
+var _gaq = _gaq || []; 
+_gaq.push(['_setAccount', 'UA-36961161-1']);_gaq.push(['_trackPageview']);(function() { 
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; 
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; 
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); 
+})(); 
+</script>
+
+
+<script>
+    (function (h, e, a, t, m, p) {
+        m = e.createElement(a); m.async = !0; m.src = t;
+        p = e.getElementsByTagName(a)[0]; p.parentNode.insertBefore(m, p);
+    })(window, document, 'script', 'https://u.heatmap.it/log.js');
+	</script>
+
+
+</head>
+<body >
+    
+	
+
+<script type="text/javascript">
+    function setlog() {
+        var today = new Date();
+        var expire = new Date();
+        
+        expire.setTime(3600000 * 24 * 30);
+        document.cookie = "versionswitch=desktop;domain=.bdjobs.com;path=/";
+
+        _gaq.push(['_trackEvent', 'SwitchLogMobile', '-1', 'jobsearch.aspx', 1.00, true]);
+    }
+</script>
+ <style type="text/css">
+    .switch_wrapper{
+	    margin:0px auto 0px auto; position:relative; padding:0px; background-color:#AD016D; min-height:30px; text-align:center; 
+    }
+    .switch_wrapper a{ width:100%; color:#ffffff; text-decoration:none; font-size:14px;}
+</style>
+    <div >
+        
+    </div>
+
+ 
+<div class="header" style="margin:5px 0px 5px 0px;">
+    
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+           
+            <td width="10%">            	
+                <div class="logo">
+                    <a href="searchcategories.aspx"><img src="images/logo.gif" alt="Bdjobs.com" /></a>
+                </div>
+            </td>
+            <td width="85%" >
+            	<table width="100%" border="0" cellpadding="0" cellspacing="0" style="vertical-align:middle; font-size:14px; white-space:nowrap; word-wrap:nowrap;">
+                  <tr>
+                    <td width="80%">&nbsp;</td>
+                    <td width="10%"><a href="http://mybdjobs.bdjobs.com/createaccount.asp" style="float:right;">Create account</a></td>
+                    <td width="10%"><div class="Log-button"><a href=" http://mybdjobs.bdjobs.com/mybdjobs/signin.asp?sys=mob">Sign In</a></div></td>
+                    
+                  </tr>
+                </table>            
+            </td>
+             <td width="5%">
+            	<button id="show"><img src="images/menunew.gif"/></button>
+            </td>           
+          </tr>
+        </table> 
+        <div class="clear"></div>
+    </div>
+   
+    <div class="nav">
+        <ul>
+            <li><a href="Jobsearch.aspx"><img src="images/Search_Menu.gif"/> &nbsp; Job Search</a></li>
+            <li><a href="quicklinks.aspx"><img src="images/QL-Black.gif"/> &nbsp; Quick Links</a></li>
+            <li><a href="Company_List.aspx"><img src="images/Employer_List.gif"/> &nbsp; Employer List</a></li>
+            <li><a href="http://mybdjobs.bdjobs.com/createaccount.asp"><img src="images/Post_Resume.gif"/> &nbsp; Create account</a></li>
+           
+            <li class="hb"></li>
+            
+                <li><a href="http://jobs.bdjobs.com/m/bn/jobsearchbn.aspx?fcatid=8" onclick="goto('Bangla')"><img alt="Career Tips" src="images/Banglay-dekhun.gif"> &nbsp; বাংলায় দেখুন </a></li>
+            
+            
+
+        <li><a href="http://jobs.bdjobs.com/jobsearch.asp?fcatid=8&req=mob"><img src="images/View_Desk_Black.gif" alt=""> &nbsp; View desktop version </a></li>
+        </ul>
+	</div>
+
+    
+    
+    
+    
+	
+    
+ <div class="wrapper_Job_Search">
+    	<div class="Job_Search_Title_Text">Job Search</div>   	
+    </div>
+
+<form action="Jobsearch.aspx?gn=NR2IS" method="post" id="form">
+<div class="wrapper_search" style="overflow:hidden;">
+    	
+
+        
+        <div class="search_c_box" id="search_c_box">
+            <div id="selectedcriteriadiv" style="padding: 0px 0px 0px 10px; margin:9px 0px 0px 0px; color: rgb(70, 70, 70); font-size: 12px; font-weight: bold; display: block; float:left;display:none">Selected</div>
+        </div>
+    	
+        	
+            
+        
+       <div style="width:25%; margin:0px 0px 10px 15px;">
+       
+       
+        </div>
+        
+        <div class="mobile-nav">
+                <ul>
+                    <li>
+                        <a href="javascript:doVoid();" id="search-tab" class="nav-icon mobile-nav-tab"><span><img src="images/Category_Tab.gif" alt=""/></span><br />Category </a>
+                    </li>
+                     
+                    <li style="width:26%;">
+                        <a href="javascript:doVoid();" id="members-tab" class="nav-icon mobile-nav-tab"><span><img src="images/Industry_Tab.gif" alt=""/></span><br />Location</a>
+                    </li>
+                    <li>
+                        <a href="javascript:doVoid();" id="members-tab3" class="nav-icon mobile-nav-tab"><span><img src="images/Search_keywords.gif" alt=""/></span><br />Keywords</a>
+                    </li>
+                    <li>
+                        <a href="javascript:doVoid();" id="menu-tab" class="nav-icon mobile-nav-tab"><span><img src="images/Other_Filters.gif" alt=""/></span><br />Other Filters</a>
+                    </li>
+                </ul>
+</div>
+            <div class="mobile-nav-content">
+                <input id="countactions" type="hidden" value="0" />
+                <div id="1"></div>
+                <div style="display: none;" id="category" class="content-item">
+                   <div class="search_c_c s_content">
+                        <label>Select Category:</label>
+                        <select size="1" style="width:98%; color:#666666;" name="functionalcat" id="functionalcat" onchange="removeDivforcat('fnspecialskilledcat',true,'select');addDiv(this.id,'select','',true)">
+                            <option value="-1">Select</option>
+
+                            <option value="1">Accounting/Finance</option><option value="2">Bank/Non-Bank Fin. Institution</option><option value="3">Commercial/Supply Chain</option><option value="4">Education/Training</option><option value="5">Engineer/Architect</option><option value="6">Garments/Textile</option><option value="7">General Management/Admin</option><option value="8"selected='selected'>IT/Telecommunication</option><option value="9">Marketing/Sales</option><option value="10">Media/Advertisement/Event Mgt.</option><option value="11">Medical/Pharma</option><option value="12">NGO/Development</option><option value="13">Research/Consultancy</option><option value="14">Secretary/Receptionist</option><option value="15">Data Entry/Operator/BPO</option><option value="16">Customer Support/Call Centre</option><option value="17">HR/Org. Development</option><option value="18">Design/Creative</option><option value="19">Production/Operation</option><option value="20">Hospitality/ Travel/ Tourism</option><option value="21">Beauty Care/ Health & Fitness</option><option value="22">Law/Legal</option><option value="23">Electrician/ Construction/ Repair</option><option value="24">Security/Support Service</option><option value="25">Driving/Motor Technician</option><option value="26">Agro (Plant/Animal/Fisheries)</option>
+
+                            <option value="-10" >Others</option>
+                        </select> 
+                    </div>
+                     
+                      <script type="text/javascript">
+                          addDiv('functionalcat', 'select', '', false);
+                      </script>
+                    
+
+                    <div class="search_c_c s_content">
+                        <label>Select Special Skilled Category:</label>
+                        <select size="1" style="width:98%; color:#666666;" name="fnspecialskilledcat" id="fnspecialskilledcat" onchange="removeDivforcat('functionalcat',true,'select');addDiv(this.id,'select','',true)">
+                            <option value="-1">Select</option>
+
+                            <option value="61">ডাটা এন্ট্রি/ কম্পিউটার অপারেটর</option><option value="62">মেকানিক/ টেকনিশিয়ান</option><option value="63">নার্স</option><option value="64">ওয়েটার / ওয়েট্রেস</option><option value="65">প্যাথলজিষ্ট/ল্যাব সহকারী</option><option value="66">ইলেকট্রিশিয়ান/ইলেকট্রনিকস্ টেকনিশিয়ান</option><option value="67">ড্রাইভার</option><option value="68">শেফ/বাবুর্চী</option><option value="69">হাউজকিপার</option><option value="70">সিকিউরিটি গার্ড</option><option value="71">গ্রাফিক ডিজাইনার</option><option value="72">ওয়েল্ডার</option><option value="73">প্লাম্বার/পাইপফিটিং</option><option value="74">স্যুইং মেশিন অপারেটর</option><option value="75">রাজমিস্ত্রি/ নির্মান কর্মী</option><option value="76">CAD অপারেটর</option><option value="77">ডেলিভারী ম্যান
+</option><option value="78">গার্মেন্টস টেকনিশিয়ান / মেশিন অপারেটর</option><option value="79">পিয়ন</option><option value="80">ক্লিনার</option><option value="81">মালী</option><option value="82">কার্পেন্টার</option><option value="83">শো-রুম সহকারি/সেলসম্যান</option>
+                            <option value="-11" > অন্যান্য স্পেশাল স্কিল্‌ড জব্‌স</option>
+
+                        </select> 
+                    </div>
+
+                   
+
+
+                    
+                </div>
+                 
+                  
+
+                <div style="display: none;" id="industry" class="content-item">
+                    <div class="search_c_c s_content">
+                        <label>Select Division:</label>
+                        <select size="1" style="width:98%; color:#666666;" id="division" name="division" onchange="addDiv(this.id,'select','',true)">
+                            <option value="-1">Any</option>
+                            <option value="Dhaka" >Dhaka</option>
+                            <option value="Mymensingh" >Mymensingh</option>
+                            <option value="Chittagong" >Chittagong</option>
+                            <option value="Rajshahi" >Rajshahi</option>
+                            <option value="Khulna" >Khulna</option>
+                            <option value="Sylhet" >Sylhet</option>
+                            <option value="Rangpur" >Rangpur</option>
+                            <option value="Barisal" >Barisal</option>
+                        </select>
+                    </div>
+                    
+                </div>
+              
+
+                <div style="display: none;" id="search" class="content-item">
+                    <div class="search_c_c s_content">
+                        <label>Search by Keywords:</label>
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                            <td width="100%">
+                                <input style="width:98%; color:#666666;" type="text" maxlength="50" name="keyword" value="" tabindex="1" id="keyword"  onblur="addDiv(this.id,'text','',true)" />
+                                
+                            </td>
+                            <td width="20%"></td>
+                            <td width="5%"></td>
+                            </tr>
+                        </table>
+                	</div>
+                </div>
+
+                <div style="display: none;" id="experience" class="content-item">
+                    <div class="search_c_c s_content">
+                    	<div>
+                            <label>Experience Range:</label>
+                            <select size="1" style="width:98%; color:#666666;" name="experienceRange" id="experienceRange" onchange="addDiv(this.id,'select','',true)">
+                                <option value="-1">Any </option>
+                                <option value="1" >Below 1 year</option>
+                                <option value="2" >1 - &lt 3 years</option>
+                                <option value="3" >3 - &lt 5 years</option>
+                                <option value="4" >5 - &lt 10 years</option>
+                                <option value="5" >Over 10 years</option>
+                            </select>
+                        </div>
+                        
+
+                      
+
+                        <div class="search_c_c s_content">
+                    	    <div>
+                                
+                                <label>Job Type:</label>
+                                <select size="1" style="width:98%; color:#666666;" name="specialskill" id="specialskill" onchange="addDiv(this.id,&#39;select&#39;,&#39;&#39;,true)">
+                                    <option  value="-1">All jobs </option>
+                                    <option  value="1">Special skilled jobs</option>
+                                    <option  value="0">All except special skilled jobs</option>
+                                </select>
+                            </div>
+
+                            
+
+                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    
+
+    <div class="match_s_c_box">    
+    	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="text-align:left; width:45%;">                	
+                	<span style="height:35px; width:100%; margin:0px 10px 0px 0px; background:#69aa47; padding:3px 10px 3px 10px; border:1px solid #69aa47; color:#FFF;" id="jobTotalCount">322</span> <span id="jobMessage">jobs found</span>
+                	</td>
+                <td style="text-align:right; width:55%;white-space:nowrap" id="jobsperpage">
+                	<div class="contact-form" style="margin:0px 10px 0px 0px; color:#333;"><span> Jobs per page </span>
+                     <select size="1" style="width:50px; color:#666666;" tabindex="2" onchange="setPerpageRecord(this.value)">
+                        <option  value="10">10</option>
+                        <option  selected="selected" value="20">20</option>
+                        <option  value="30">30</option>
+                        <option  value="40">40</option>
+                    </select>
+                </div>
+                </td>
+              </tr>
+            </table>
+        	
+        </div>
+    
+
+    <input type="hidden" value="" name="locationId" id="locationId" />
+    <input type="hidden" value="" name="otherJobType" id="otherJobType" />
+     <input type="hidden" value="1" name="pg_no" id="pg_no" />
+    
+     
+    
+</form>   
+        <div id="joblistings" class="scroll">
+            
+            <div class="blog" style="background-color:#e0e0e0; padding:10px 10px 5px 10px;"><div class='norm_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865422&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=1';"><div class='comp_name_text'>Nasreen Zamir And Associates</div><div class='job_title_text'>IT Executive (Digital Marketing)</div><div class='job_title_hb'></div><div class='edu_text_s' >Education :</div><div class='edu_text_d' style='margin:2px 0 0 10px'>Successfully completed academic degree in IT, Computer Science or ...</div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>2 to 3 year(s)</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>21 October</strong>, 2019</li></ul></td></tr></table></div><div class='norm_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865415&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=1';"><div class='comp_name_text'>LSI Industries Ltd</div><div class='job_title_text'>Programmer</div><div class='job_title_hb'></div><div class='edu_text_s' >Education :</div><div class='edu_text_d' style='margin:2px 0 0 10px'>Bachelor of Computer Application (BCA)
+Masters in Computer ...</div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>At least 4 year(s)</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>20 October</strong>, 2019</li></ul></td></tr></table></div><div class='norm_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865402&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=1';"><div class='comp_name_text'>Group Of Company</div><div class='job_title_text'>Programmer - Android & IOS</div><div class='job_title_hb'></div><div class='edu_text_s' >Education :</div><div class='edu_text_d' style='margin:2px 0 0 10px'>Bachelor degree in any discipline
+Bachelor`s degree in Engineering, ...</div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>At least 4 year(s)</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>5 October</strong>, 2019</li></ul></td></tr></table></div><div style='margin:0px 0px 10px 0px;text-align:center;'><script type="text/javascript">
+ google_ad_client = "ca-pub-5130888087776673";  //MobileHorizontalLarge
+google_ad_slot ="1218101540"; 
+ google_ad_width = "320";  
+ google_ad_height = "100"; 
+ </script><script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script></div><div class='norm_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865401&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=1';"><div class='comp_name_text'>Group Of Company</div><div class='job_title_text'>CTO/Project Head (IT)</div><div class='job_title_hb'></div><div class='edu_text_s' >Education :</div><div class='edu_text_d' style='margin:2px 0 0 10px'>Masters degree in any discipline
+Bachelor/ Masters degree from ...</div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>At least 10 year(s)</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>5 October</strong>, 2019</li></ul></td></tr></table></div><div class='norm_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865389&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=1';"><div class='comp_name_text'>Uttara University</div><div class='job_title_text'>Lab Assistant (CSE)</div><div class='job_title_hb'></div><div class='edu_text_s' >Education :</div><div class='edu_text_d' style='margin:2px 0 0 10px'>Minimum Diploma in Computer Science</div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>Na</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>30 September</strong>, 2019</li></ul></td></tr></table></div><div class='norm_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865374&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=1';"><div class='comp_name_text'>TWINMOS TECHNOLOGIES MIDDLE EAST FZE , C9 DUBAI AIRPORT FREE ZONE</div><div class='job_title_text'>System Support Engineer</div><div class='job_title_hb'></div><div class='edu_text_s' >Education :</div><div class='edu_text_d' style='margin:2px 0 0 10px'>Bachelor of Science (BSc) in Information Technology
+Certified in ...</div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>At least 4 year(s)</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>19 October</strong>, 2019</li></ul></td></tr></table></div><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-fq+69+38-ip+ma" data-ad-client="ca-pub-5130888087776673" data-ad-slot="4188680817"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script><div class='norm_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865299&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=1';"><div class='comp_name_text'>Chand Computer Training Institute</div><div class='job_title_text'>Junior Computer Instructor</div><div class='job_title_hb'></div><div class='edu_text_s' >Education :</div><div class='edu_text_d' style='margin:2px 0 0 10px'>Bachelor of Science (BSc) in CSE
+</div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>Na</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>29 September</strong>, 2019</li></ul></td></tr></table></div><div class='norm_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865361&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=1';"><div class='comp_name_text'>A Leading Power Generation Company</div><div class='job_title_text'>Sr. Executive - IT Infrastructure</div><div class='job_title_hb'></div><div class='edu_text_s' >Education :</div><div class='edu_text_d' style='margin:2px 0 0 10px'>Engineering Degree, specially (B.Sc. in C.SE) from recognized ...</div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>Na</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>29 September</strong>, 2019</li></ul></td></tr></table></div><div class='stand_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865354&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=1';"><div class='comp-logo-img'><img src='http://corporate.bdjobs.com/logos/35059_0.jpg' /></div><div class='comp_name_text'>World University of Bangladesh</div><div class='job_title_text'>Associate Professor of Computer Science and Engineering</div><div class='job_title_hb'></div><div class='edu_text_s' >Education :</div><div class='edu_text_d' style='margin:2px 0 0 10px'>PhD in Computer Science and Engineering.
+Must have a research degree ...</div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>At least 10 year(s)</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>30 September</strong>, 2019</li></ul></td></tr></table></div><div style='margin:0px 0px 10px 0px;text-align:center;'><script type="text/javascript">
+ google_ad_client = "ca-pub-5130888087776673";  //MobileBanner
+google_ad_slot ="3003031949"; 
+ google_ad_width = "320";  
+ google_ad_height = "50"; 
+ </script><script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script></div><div class='stand_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865301&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=1';"><div class='comp-logo-img'><img src='http://corporate.bdjobs.com/logos/18473_0.jpg' /></div><div class='comp_name_text'>icddr,b</div><div class='job_title_text'>Programmer with Emerging Infections under the Infectious Diseases Division</div><div class='job_title_hb'></div><div class='edu_text_s' >Education :</div><div class='edu_text_d' style='margin:2px 0 0 10px'>Bachelor degree in Computer Science/Information and Communications ...</div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>At least 3 year(s)</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>28 September</strong>, 2019</li></ul></td></tr></table></div><div class='norm_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865325&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=1';"><div class='comp_name_text'>Helix IT Solution Ltd.</div><div class='job_title_text'>Jr. Business Development Officer (eCommerce)</div><div class='job_title_hb'></div><div class='edu_text_s' >Education :</div><div class='edu_text_d' style='margin:2px 0 0 10px'>Bachelor of Science (BSc) in CSE, Bachelor of Science (BSc) in IT, ...</div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>At most 1 year(s)</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>18 October</strong>, 2019</li></ul></td></tr></table></div><div class='norm_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865317&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=3';"><div class='comp_name_text'>b-cause Inc., Bangladesh Ltd.</div><div class='job_title_text'>Software Developer</div><div class='job_title_hb'></div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>3 to 5 year(s)</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>19 October</strong>, 2019</li></ul></td></tr></table></div><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-fq+69+38-ip+ma" data-ad-client="ca-pub-5130888087776673" data-ad-slot="4188680817"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script><div class='norm_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865304&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=1';"><div class='comp_name_text'>Babylon Outfit Ltd - TRENDZ.</div><div class='job_title_text'>Officer - Sales & E-Commerce</div><div class='job_title_hb'></div><div class='edu_text_s' >Education :</div><div class='edu_text_d' style='margin:2px 0 0 10px'>Bachelor degree in any discipline
+Bachelor or Masters from any ...</div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>1 to 3 year(s)</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>26 September</strong>, 2019</li></ul></td></tr></table></div><div class='norm_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865306&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=1';"><div class='comp_name_text'>Arista Mart Ltd.</div><div class='job_title_text'>Junior Officer (Corporate Sales & Marketing)</div><div class='job_title_hb'></div><div class='edu_text_s' >Education :</div><div class='edu_text_d' style='margin:2px 0 0 10px'>Bachelor degree in any discipline
+</div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>At most 3 year(s)</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>19 October</strong>, 2019</li></ul></td></tr></table></div><div class='norm_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865314&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=1';"><div class='comp_name_text'>Hungrynaki.com</div><div class='job_title_text'>Senior iOS Developer</div><div class='job_title_hb'></div><div class='edu_text_s' >Education :</div><div class='edu_text_d' style='margin:2px 0 0 10px'>Bachelor of Science (BSc) in CSE
+</div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>4 to 5 year(s)</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>3 October</strong>, 2019</li></ul></td></tr></table></div><script async src = "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5130888087776673" data-ad-slot="4359157117" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({ });</script><div class='stand_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865313&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=1';"><div class='comp-logo-img'><img src='http://corporate.bdjobs.com/logos/38220.jpg' /></div><div class='comp_name_text'>Secure Link Services Ltd.</div><div class='job_title_text'>System Administrator</div><div class='job_title_hb'></div><div class='edu_text_s' >Education :</div><div class='edu_text_d' style='margin:2px 0 0 10px'>Bachelor of Science (BSc) in Computer Science
+Master of Science ...</div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>5 to 7 year(s)</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>19 October</strong>, 2019</li></ul></td></tr></table></div><div class='norm_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865312&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=1';"><div class='comp_name_text'>Hungrynaki.com</div><div class='job_title_text'>iOS Developer</div><div class='job_title_hb'></div><div class='edu_text_s' >Education :</div><div class='edu_text_d' style='margin:2px 0 0 10px'>Bachelor of Science (BSc) in CSE
+</div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>2 to 3 year(s)</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>3 October</strong>, 2019</li></ul></td></tr></table></div><div class='stand_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865298&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=1';"><div class='comp-logo-img'><img src='http://corporate.bdjobs.com/logos/81279_1.jpg' /></div><div class='comp_name_text'>Super Industrial Park Limited</div><div class='job_title_text'>IT Executive</div><div class='job_title_hb'></div><div class='edu_text_s' >Education :</div><div class='edu_text_d' style='margin:2px 0 0 10px'>Bachelor`s Degree in Information Technology, Computer Science or ...</div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>Na</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>24 September</strong>, 2019</li></ul></td></tr></table></div><div class='stand_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865294&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=1';"><div class='comp-logo-img'><img src='http://corporate.bdjobs.com/logos/81279_1.jpg' /></div><div class='comp_name_text'>Super Industrial Park Limited</div><div class='job_title_text'>Marketing Executive</div><div class='job_title_hb'></div><div class='edu_text_s' >Education :</div><div class='edu_text_d' style='margin:2px 0 0 10px'>BBA/ MBA with major in Marketing.</div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>Na</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>24 September</strong>, 2019</li></ul></td></tr></table></div><div class='norm_jobs_wrapper' onclick="window.location='JobViewDetails.aspx?id=865257&fcatid=8&pg=1&experienceRange=&SpecialSkill=&otherJobType=&ln=1';"><div class='comp_name_text'>DigiCon Telecommunication Limited</div><div class='job_title_text'>Application Support Engineer</div><div class='job_title_hb'></div><div class='edu_text_s' >Education :</div><div class='edu_text_d' style='margin:2px 0 0 10px'>Bachelor in Engineering (BEngg) in Computer Science & Engineering
+</div><table width='100%' border='0' cellpadding='5' cellspacing='0' style='margin:5px 0px 0px 0px;'><tr class='exp_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'>Experience :</td><td width='93%'><ul><li>At least 4 year(s)</li></ul></td></tr><tr class='dead_text'><td width='7%' style='white-space:nowrap; word-wrap:nowrap;'> Deadline :</td><td width='93%'><ul><li><strong>3 October</strong>, 2019</li></ul></td></tr></table></div></div>
+            <div class="pagination">
+               
+                <ul> <li>Pages : </li> <li class='current'><a>1</a></li><li><a href ='javascript:GoPage(2)'>2</a> </li><li><a href ='javascript:GoPage(3)'>3</a> </li><li><a href ='javascript:GoPage(4)'>4</a> </li><li><a href ='javascript:GoPage(5)'>5</a> </li><li><a href ='javascript:GoPage(17)' >...17</a></li></ul>
+            </div>
+            
+           
+        </div>
+
+        
+        <div id="loadingImage" style="text-align:center;display:none">
+        </div>
+        
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/52892455/MobileSite/adMobileJobDetailBottom', [[300, 100], [320, 50], [200, 200], [300, 600], [180, 150], [250, 250], [300, 250], [234, 60], [336, 280]], 'div-gpt-ad-1552475662132-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+
+
+<div class="blog-content-c">
+    <!-- /52892455/MobileSite/adMobileJobDetailBottom -->
+    <div id='div-gpt-ad-1552475662132-0'>
+    <script>
+    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1552475662132-0'); });
+    </script>
+    </div>
+</div>
+
+
+
+
+
+<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/52892455/MobileSite/adMobileSticky', [[320, 50], [300, 100]], 'div-gpt-ad-1552482753637-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+<div class="footer" >
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="white-space:nowrap; word-wrap:nowrap;">
+      <tr>
+        <td width="85%">
+        	<div ><a href="SearchCategories.aspx">Home</a> &nbsp; &nbsp;| 
+            
+                   <a href="http://mybdjobs.bdjobs.com/mybdjobs">My Bdjobs</a> 
+               
+            &nbsp; &nbsp;| <a href="Jobsearch.aspx">Job Search </a> 
+            </div>
+        </td>
+        <td width="5%" style="text-align:right;">
+            
+        	<div><a style="color:#063851" href="http://jobs.bdjobs.com/jobsearch.asp?fcatid=8&req=mob"><img align="absmiddle" width="20" height="20" src="http://jobs.bdjobs.com/m/images/Desktop_Footer.gif" > </a></div>
+            
+        </td>
+        <td width="10%" style="text-align:right;">
+        	<div><a onclick="jQuery('html,body').animate({scrollTop:0},'slow');" href="javascript:void(0);"><img src="images/Go_Up.gif" alt="top"/></a></div>
+        </td>
+      </tr>
+    </table>
+</div>        
+<script type="text/javascript">
+    $('.nav').hide();
+    $('#show').click(function () {
+        $(".nav").toggle();
+        
+    });
+</script>
+
+
+
+    <style type="text/css">
+        /*
+        .footer{
+	        margin-bottom:50px;
+        }
+        */
+        
+        .footer{
+	        margin-bottom:90px;
+        }
+		.warning-footer{
+		   background-color: #eeeeee;
+		   border-top: 2px solid #B71C1C;
+		   color: #B71C1C;
+	   }
+
+		.warning-footer marquee{
+		   padding: 5px 5px 15px 5px;
+	   }
+    </style>
+    <div class="footer-ad">
+        <!-- /52892455/MobileSite/adMobileSticky -->
+        <div id='div-gpt-ad-1552482753637-0'>
+        <script>
+        googletag.cmd.push(function() { googletag.display('div-gpt-ad-1552482753637-0'); });
+        </script>
+        </div>
+        <div class="warning-footer">
+			<marquee direction="left" scrolldelay="200">বিডিজবস-এ প্রকাশিত যেকোনো চাকরি সংক্রান্ত তথ্য নিয়োগকারী প্রতিষ্ঠান কর্তৃক দেওয়া হয়ে থাকে। প্রকাশিত যেকোনো ধরণের চাকরি তথ্য বা নিয়োগ-প্রক্রিয়ার দায়-দায়িত্ব স্ব-স্ব নিয়োগকারী প্রতিষ্ঠানের। এ সংক্রান্ত কোনো অসত্য বা অসম্পূর্ন তথ্য অথবা আর্থিক লেনদেনের দায় বিডিজবস-এর নয়। <strong> <u>চাকরিপ্রার্থীদের এই ব্যাপারে সতর্ক হবার জন্য পরামর্শ দেওয়া হচ্ছে।</u></strong></marquee>
+		</div>
+    </div> 
+
+</body>
+</html>
