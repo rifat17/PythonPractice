@@ -5,7 +5,9 @@ from bs4 import BeautifulSoup
 
 # url = "http://www.routine.baiust.edu.bd/?department_id=1&semester=12"
 
-url = 'http://127.0.0.1:8000/routineBaiust/routine_21-09-2019_1-03-33.html'
+# url = 'http://127.0.0.1:8000/routineBaiust/routine_21-09-2019_1-03-33.html'
+
+url = 'http://routine.baiust.edu.bd/routine-ppdf/sem/download?semester=12&department_id=1'
 
 res = urlopen(url)
 
@@ -73,3 +75,5 @@ soup = BeautifulSoup(res.read(), 'html.parser')
 # #     print(x)
 
 # print(routin[1])
+
+print(soup.get_text())
