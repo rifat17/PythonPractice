@@ -1,3 +1,5 @@
+import routineScrapper
+
 dept_choice = {
     'CSE' : '1',
     'EEE' : '2',
@@ -69,13 +71,15 @@ def input_promot():
         return (dept, semester[sem] )
     return None
 
-
-
-if __name__ == "__main__":
-    
+def run_menu():
     try:
         dept,semester = input_promot()
         url = "http://routine.baiust.edu.bd/?department_id={deptNo}&semester={semNo}".format(deptNo=dept,semNo=semester)
         print(url)
+        routineScrapper.Scraper(my_url=url)
     except Exception as e:
-        print("Wrong info :/")
+        print("Wrong info :/, Select correctly.")
+
+
+if __name__ == "__main__":
+    run_menu()
