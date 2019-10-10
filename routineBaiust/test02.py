@@ -3,7 +3,9 @@ from bs4 import BeautifulSoup as Soup
 import re
 import datetime
 
-my_url = "http://localhost:8080/routine_21-09-2019_1-03-33.html"
+# my_url = "http://localhost:8080/routine_21-09-2019_1-03-33.html"
+
+my_url = 'http://routine.baiust.edu.bd/?department_id=1&semester=12'
 
 uClient = urlopen(my_url)
 page_html = uClient.read()
@@ -217,7 +219,7 @@ trClass = {'Sunday' : 'bg-danger text-light',
          'Monday' : 'bg-info text-light', 
          'Thuesday' : 'bg-success text-light', 
          'Wednesday' : 'bg-dark text-light', 
-         'Thusday': 'bg-primary text-light'}
+         'Thursday': 'bg-primary text-light'}
 
 
 # print(datetime.date.strftime(datetime.datetime.today(),'%A'))
