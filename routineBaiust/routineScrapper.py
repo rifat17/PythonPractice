@@ -26,7 +26,7 @@ trClass = {'Sunday' : 'bg-danger text-light',
          'Monday' : 'bg-info text-light', 
          'Thuesday' : 'bg-success text-light', 
          'Wednesday' : 'bg-dark text-light', 
-         'Thusday': 'bg-primary text-light'}
+         'Thursday': 'bg-primary text-light'}
 
 
 # print(datetime.date.strftime(datetime.datetime.today(),'%A'))
